@@ -27,7 +27,7 @@ function CrazyOscillator(data){
         
         this.gain.connect(this.dist);
         this.dist.connect(this.context.destination);
-        this.dist.curve = this.makeDistortionCurve(0)
+        this.dist.curve = makeDistortionCurve(0)
         this.gain.gain.setValueAtTime(this.gainValue, this.now);
         this.oscillator.start(this.now);
         // this.oscillator.stop(this.now + 0.5);
@@ -68,20 +68,6 @@ function CrazyOscillator(data){
 
     this.rangeEvent = range.addEventListener('input', function(){
         let value = parseInt(this.value) * 5;
-        _this.dist.curve = _this.makeDistortionCurve(value);
-      });
-
-    this.makeDistortionCurve = function(amount) {
-        var k = typeof amount === 'number' ? amount : 0,
-          n_samples = 44100,
-          curve = new Float32Array(n_samples),
-          deg = Math.PI / 180,
-          i = 0,
-          x;
-        for ( ; i < n_samples; ++i ) {
-          x = i * 2 / n_samples - 1;
-          curve[i] = ( 3 + k ) * x * 20 * deg / ( Math.PI + k * Math.abs(x) );
-        }
-        return curve;
-    };
+        _this.dist.curve = makeDistortionCurve(value);
+    });
 }
