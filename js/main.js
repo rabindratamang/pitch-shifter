@@ -1,5 +1,4 @@
- 
-   function CrazyOscillator(data){
+function CrazyOscillator(data){
     this.canvas = document.querySelector(`#${data.canvasId}`);
     this.canvas.width = window.innerWidth;
     this.canvas.height = window.innerHeight;
@@ -36,18 +35,16 @@
 
     this.volumeUp = window.addEventListener('mousemove',function(e){
         _this.drawCirle(e.clientX,e.clientY);
-        _this.gainValue = (e.clientY-0)/(_this.height-0);
+
+        _this.gainValue = normalize(0,1,0,_this.height,e.clientY);
         _this.gain.gain.setValueAtTime(_this.gainValue,_this.now);
 
-        // //normalize to 0 - 1 range
-        _this.frequencyValue = (e.clientX-0)/(_this.width-0);
-
-        // //normalize to 1000.3 - 196 range
-        _this.frequencyValue = (_this.frequencyValue * (data.maxFrequency-data.minFrequency)) + data.minFrequency; 
+        _this.frequencyValue = normalize(data.minFrequency,data.maxFrequency,0,_this.width,e.clientX)
         _this.oscillator.frequency.value = _this.frequencyValue;
     })
 
     this.resize = window.addEventListener('resize',function(e){
+
         _this.height = window.innerHeight;
         _this.width = window.innerWidth;
 
