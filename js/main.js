@@ -44,7 +44,7 @@ function CrazyOscillator(data){
     })
 
     this.resize = window.addEventListener('resize',function(e){
-
+        
         _this.height = window.innerHeight;
         _this.width = window.innerWidth;
 
