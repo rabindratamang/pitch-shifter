@@ -8,11 +8,15 @@
     <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
 </head>
 <body>
+
     <canvas id='canvas1'></canvas>
+    
     <div class="range-slider" style="z-index: 10;">
             <span>Distortion: </span>  
             <input type="range" id="range" value="0">
     </div>    
+
+    <script src="js/utils.js"></script>
     <script src="js/main.js"></script>
     <script>
         new CrazyOscillator({
